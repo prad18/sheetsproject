@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<body>
+    <form id="userForm">
+        <input type="text" name="name" placeholder="Name" required><br>
+        <input type="email" name="email" placeholder="Email" required><br>
+        <textarea name="message" placeholder="Message" required></textarea><br>
+        <button type="submit">Submit</button>
+    </form>
+
+    <script>
+        document.getElementById('userForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            var formData = new FormData(this);
+            fetch('/api/submit/', {  // assuming "/api/submit/" matches your urls.py path
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data) {
+                    alert('Data submitted successfully.');
+                    console.log(data);
+                }
+            })
+            .catch(error => console.error('Error:', error));
+        });
+    </script>
+</body>
+</html>
