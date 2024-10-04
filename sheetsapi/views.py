@@ -123,19 +123,21 @@ from .serializers import UserFormSerializer
 from google.oauth2 import service_account
 from googleapiclient.discovery import build
 from googleapiclient.http import MediaFileUpload
-from django.views.decorators.csrf import csrf_exempt
 import os
 import concurrent.futures
 from dotenv import load_dotenv
 import json
+from django.http import HttpResponse
 
 # Load environment variables from .env
 load_dotenv()
 
+def index(request):
+    return HttpResponse("Welcome to the homepage")
+
 class BaseEventView(APIView):
     SHEET_ID = ''
     DRIVE_CREDENTIALS_JSON = os.getenv("GOOGLE_CREDENTIALS")  # Load the JSON string from .env
-    @csrf_exempt
     def post(self, request):
         serializer = UserFormSerializer(data=request.data)
         if serializer.is_valid():
