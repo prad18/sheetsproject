@@ -28,7 +28,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ["sheetsproject.onrender.com/","127.0.0.1","localhost"]
+ALLOWED_HOSTS = ['prad-6wzv.onrender.com']
 
 
 # Application definition
@@ -77,6 +77,11 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'sheetsproject.wsgi.application'
 
+REST_FRAMEWORK = {
+    'DEFAULT_RENDERER_CLASSES': (
+        'rest_framework.renderers.JSONRenderer',
+    ),
+}
 
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
